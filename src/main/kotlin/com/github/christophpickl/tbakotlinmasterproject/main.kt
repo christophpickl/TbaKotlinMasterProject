@@ -1,5 +1,11 @@
 package com.github.christophpickl.tbakotlinmasterproject
 
-fun main() {
-    println("Hello World!")
+import io.ktor.application.Application
+
+//fun main() {
+//    println("Hello World!")
+//}
+
+fun Application.main() {
+    println("ktor application main")
 }
