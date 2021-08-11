@@ -1,6 +1,8 @@
 package com.github.christophpickl.tbakotlinmasterproject
 
-import io.ktor.application.Application
+import io.ktor.application.*
+import io.ktor.response.*
+import io.ktor.routing.*
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
 
@@ -11,4 +13,9 @@ fun main() {
 }
 
 fun Application.main() {
+    routing {
+        get("/") {
+            call.respondText("Hello World")
+        }
+    }
 }
