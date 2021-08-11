@@ -10,10 +10,11 @@ import io.ktor.server.testing.withTestApplication
 
 class KtorTest : StringSpec() {
     init {
-        "foobar".config(enabled = false) {
+        "foobar" {
             withTestApplication(Application::main) {
                 handleRequest(HttpMethod.Get, "/").apply {
                     response.status() shouldBe HttpStatusCode.OK
+                    response.content shouldBe "Hello World"
                 }
             }
         }

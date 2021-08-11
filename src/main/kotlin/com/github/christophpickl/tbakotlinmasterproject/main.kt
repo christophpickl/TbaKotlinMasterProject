@@ -1,11 +1,14 @@
 package com.github.christophpickl.tbakotlinmasterproject
 
 import io.ktor.application.Application
+import io.ktor.server.engine.*
+import io.ktor.server.netty.*
 
-//fun main() {
-//    println("Hello World!")
-//}
+fun main() {
+    embeddedServer(Netty, port = 8080) {
+        this.main()
+    }.start(wait = true)
+}
 
 fun Application.main() {
-    println("ktor application main")
 }
