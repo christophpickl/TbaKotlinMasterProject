@@ -10,7 +10,7 @@ import io.ktor.server.testing.withTestApplication
 
 class KtorTest : StringSpec() {
     init {
-        "foobar" {
+        "When requesting root path Then return OK and greeting text" {
             withTestApplication(Application::main) {
                 handleRequest(HttpMethod.Get, "/").apply {
                     response.status() shouldBe HttpStatusCode.OK
