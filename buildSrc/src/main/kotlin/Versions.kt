@@ -3,6 +3,7 @@ object Versions {
     
     val Ktor = "1.6.4"
     val Kotest = "4.6.3"
+    val Koin = "3.1.2"
     val Mockk = "1.12.0"
     val Moshi = "1.12.0"
     val MoshiKtor = "2.1.0"

@@ -23,6 +23,10 @@ subprojects {
 		implementation(kotlin("reflect"))
 		implementation(Dependencies.Logging.MuLogging)
 		
+		if(!setOf("api-model", "domain-model").contains(project.name)) {
+			implementation(Dependencies.Koin.Core)
+		}
+		
 		testImplementation(Dependencies.Kotest.RunnerJunit5)
 		testImplementation(Dependencies.Kotest.AssertionsCoreJvm)
 		testImplementation(Dependencies.Mockk)

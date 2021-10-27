@@ -7,6 +7,12 @@ object Dependencies {
         val AssertionsCoreJvm = kotest("assertions-core-jvm")
     }
     
+    object Koin {
+        private fun koin(artifactIdSuffix: String) = "io.insert-koin:koin-$artifactIdSuffix:${Versions.Koin}"
+        val Core = koin("core")
+        val Ktor = koin("ktor")
+    }
+    
     object Ktor {
         private fun ktor(artifactIdSuffix: String) = "io.ktor:ktor-$artifactIdSuffix:${Versions.Ktor}"
         val ServerNetty = ktor("server-netty")
