@@ -21,6 +21,11 @@ subprojects {
 	dependencies {
 		implementation(kotlin("stdlib-jdk8"))
 		implementation(kotlin("reflect"))
+		implementation(Dependencies.Logging.MuLogging)
+		
+		testImplementation(Dependencies.Kotest.RunnerJunit5)
+		testImplementation(Dependencies.Kotest.AssertionsCoreJvm)
+		testImplementation(Dependencies.Mockk)
 	}
 	
 	tasks.withType<KotlinCompile> {

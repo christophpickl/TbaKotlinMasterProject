@@ -13,5 +13,17 @@ object Dependencies {
         val ServerTestHost = ktor("server-test-host")
     }
     
+    object Logging {
+        val Logback = "ch.qos.logback:logback-classic:${Versions.Logback}"
+        val MuLogging = "io.github.microutils:kotlin-logging:${Versions.MuLogging}"
+    }
+    
     val Mockk = "io.mockk:mockk:${Versions.Mockk}"
+    
+    object Moshi {
+        private fun moshi(artifactIdSuffix: String) = "com.squareup.moshi:$artifactIdSuffix:${Versions.Moshi}"
+        val Moshi = moshi("moshi")
+        val Kotlin = moshi("moshi-kotlin")
+        val Ktor = "com.hypercubetools:ktor-moshi-server:${Versions.MoshiKtor}"
+    }
 }

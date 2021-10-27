@@ -1,5 +1,6 @@
 rootProject.name = "TbaKotlinMasterProject"
 
 include(
-    "app"
+    "app",
+    "api-model"
 )
