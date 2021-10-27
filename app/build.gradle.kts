@@ -6,9 +6,9 @@ dependencies {
     
     implementation(Dependencies.Ktor.ServerNetty)
     implementation(Dependencies.Koin.Ktor)
+    implementation(Dependencies.Arrow.Core)
     implementation(Dependencies.Logging.Logback)
     
-//    testImplementation(projects.domainModel, "test")
     testImplementation(project(":domain-model", "test"))
     testImplementation(projects.commonsTest)
 }

@@ -5,3 +5,9 @@ fun Auction.Companion.any() = Auction(
 )
 
 fun Title.Companion.any() = Title("any title")
+
+fun InternalFault.Companion.any() = InternalFault(
+    internalMessage = "anyInternalMessage",
+    displayMessage = "anyDisplayMessage",
+    cause = null
+)

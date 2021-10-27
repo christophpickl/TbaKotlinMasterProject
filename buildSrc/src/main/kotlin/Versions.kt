@@ -1,6 +1,7 @@
 @Suppress("MayBeConstant")
 object Versions {
     
+    val Arrow = "1.0.0"
     val Jackson = "2.13.+"
     val Ktor = "1.6.4"
     val Kotest = "4.6.3"

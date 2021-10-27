@@ -1,5 +1,11 @@
-@Suppress("MayBeConstant")
+
+@Suppress("MayBeConstant", "SameParameterValue")
 object Dependencies {
+    
+    object Arrow {
+        private fun arrow(artifactIdSuffix: String) = "io.arrow-kt:arrow-$artifactIdSuffix:${Versions.Arrow}"
+        val Core = arrow("core")
+    }
     
     val Jackson = "com.fasterxml.jackson.module:jackson-module-kotlin:${Versions.Jackson}"
     
