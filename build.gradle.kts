@@ -1,30 +1,44 @@
+import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-	kotlin("jvm") version "1.5.21"
+	kotlin("jvm") version Versions.Plugins.Kotlin
+	id("io.kotest") version Versions.Plugins.Kotest
+	id("com.github.ben-manes.versions") version Versions.Plugins.Versions // ./gradlew dependencyUpdates
 }
 
-repositories {
-	mavenCentral()
-}
-
-dependencies {
-	implementation("org.jetbrains.kotlin:kotlin-reflect")
-	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-	implementation("io.ktor:ktor-server-netty:1.6.2")
-
-	testImplementation("io.ktor:ktor-server-test-host:1.6.2")
-	testImplementation("io.kotest:kotest-runner-junit5:4.6.1")
-	testImplementation("io.kotest:kotest-assertions-core:4.6.1")
-}
-
-tasks.withType<KotlinCompile> {
-	kotlinOptions {
-		freeCompilerArgs = listOf("-Xjsr305=strict")
-		jvmTarget = "11"
+allprojects {
+	repositories {
+		mavenCentral()
 	}
 }
 
-tasks.withType<Test> {
-	useJUnitPlatform()
+subprojects {
+	apply(plugin = "org.jetbrains.kotlin.jvm")
+	apply(plugin = "io.kotest")
+	apply(plugin = "com.github.ben-manes.versions")
+	
+	dependencies {
+		implementation(kotlin("stdlib-jdk8"))
+		implementation(kotlin("reflect"))
+	}
+	
+	tasks.withType<KotlinCompile> {
+		kotlinOptions {
+			freeCompilerArgs = listOf("-Xjsr305=strict")
+			jvmTarget = "11"
+		}
+	}
+	
+	tasks.withType<Test> {
+		useJUnitPlatform()
+	}
+	
+	tasks.withType<DependencyUpdatesTask> {
+		val rejectPatterns = listOf("alpha", "beta", "EAP", "RC", "m").map { it.toLowerCase() }
+		rejectVersionIf {
+			val version = candidate.version.toLowerCase()
+			rejectPatterns.any { version.contains(it) }
+		}
+	}
 }

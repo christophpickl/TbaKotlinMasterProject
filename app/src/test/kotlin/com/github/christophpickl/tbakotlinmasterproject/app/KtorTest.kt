@@ -1,4 +1,4 @@
-package com.github.christophpickl.tbakotlinmasterproject
+package com.github.christophpickl.tbakotlinmasterproject.app
 
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
