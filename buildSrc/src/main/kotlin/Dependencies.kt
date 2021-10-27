@@ -1,6 +1,8 @@
 @Suppress("MayBeConstant")
 object Dependencies {
     
+    val Jackson = "com.fasterxml.jackson.module:jackson-module-kotlin:${Versions.Jackson}"
+    
     object Kotest {
         private fun kotest(artifactIdSuffix: String) = "io.kotest:kotest-$artifactIdSuffix:${Versions.Kotest}"
         val RunnerJunit5 = kotest("runner-junit5")
@@ -16,6 +18,7 @@ object Dependencies {
     object Ktor {
         private fun ktor(artifactIdSuffix: String) = "io.ktor:ktor-$artifactIdSuffix:${Versions.Ktor}"
         val ServerNetty = ktor("server-netty")
+        val ServerCore = ktor("server-core")
         val ServerTestHost = ktor("server-test-host")
     }
     

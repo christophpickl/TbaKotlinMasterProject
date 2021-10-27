@@ -50,4 +50,19 @@ subprojects {
 			rejectPatterns.any { version.contains(it) }
 		}
 	}
+	
+	if(project.name == "domain-model") {
+		configurations {
+			create("test")
+		}
+		
+		tasks.register<Jar>("testArchive") {
+			archiveBaseName.set("${project.name}-test")
+			from(project.the<SourceSetContainer>()["test"].output)
+		}
+		
+		artifacts {
+			add("test", tasks["testArchive"])
+		}
+	}
 }

@@ -1,8 +1,9 @@
-package com.github.christophpickl.tbakotlinmasterproject.app
+package com.github.christophpickl.tbakotlinmasterproject.commonsktor
 
 import com.hypercubetools.ktor.moshi.moshi
 import com.squareup.moshi.FromJson
 import com.squareup.moshi.JsonAdapter
+import com.squareup.moshi.JsonAdapter.Factory
 import com.squareup.moshi.JsonDataException
 import com.squareup.moshi.JsonQualifier
 import com.squareup.moshi.JsonReader
@@ -15,7 +16,6 @@ import com.squareup.moshi.rawType
 import io.ktor.application.Application
 import io.ktor.application.install
 import io.ktor.features.ContentNegotiation
-import mu.KotlinLogging
 import mu.KotlinLogging.logger
 import java.math.BigDecimal
 import java.time.Instant

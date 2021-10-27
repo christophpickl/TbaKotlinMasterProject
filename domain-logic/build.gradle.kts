@@ -1,3 +1,3 @@
 dependencies {
-    implementation(project(":domain-model"))
+    implementation(projects.domainModel)
 }

@@ -1,5 +1,6 @@
 package com.github.christophpickl.tbakotlinmasterproject.app
 
+import com.github.christophpickl.tbakotlinmasterproject.commonsktor.installMoshi
 import com.github.christophpickl.tbakotlinmasterproject.domainlogic.domainLogicModule
 import io.ktor.application.Application
 import io.ktor.application.install
