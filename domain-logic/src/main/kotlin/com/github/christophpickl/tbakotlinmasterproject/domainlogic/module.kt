@@ -1,7 +1,8 @@
 package com.github.christophpickl.tbakotlinmasterproject.domainlogic
 
+import com.github.christophpickl.tbakotlinmasterproject.commonstest.Modules
 import org.koin.dsl.module
 
-fun domainLogicModule() = module {
-    single { AuctionService() }
+fun Modules.domainLogic() = module {
+    single { AuctionService(get()) }
 }

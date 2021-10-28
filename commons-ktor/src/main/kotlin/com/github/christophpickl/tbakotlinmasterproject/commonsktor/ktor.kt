@@ -19,7 +19,7 @@ fun Application.installRoutes() {
     log.info { "Installing routes." }
     
     val routes = getKoin().getAll<Route>().distinct() // strangely getting duplicate instances here?!
-    log.debug { "Registered ${routes.size} routes: ${routes.joinToString()}" }
+    log.debug { "Registered ${routes.size} routes: ${routes.map { it::class.simpleName }.joinToString()}" }
     
     routing {
         routes.forEach {

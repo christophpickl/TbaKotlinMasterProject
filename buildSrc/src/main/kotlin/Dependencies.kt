@@ -10,9 +10,10 @@ object Dependencies {
     val Jackson = "com.fasterxml.jackson.module:jackson-module-kotlin:${Versions.Jackson}"
     
     object Kotest {
-        private fun kotest(artifactIdSuffix: String) = "io.kotest:kotest-$artifactIdSuffix:${Versions.Kotest}"
+        private fun kotest(artifactIdSuffix: String, version: String = Versions.Kotest) = "io.kotest:kotest-$artifactIdSuffix:$version"
         val RunnerJunit5 = kotest("runner-junit5")
         val AssertionsCoreJvm = kotest("assertions-core-jvm")
+        val AssertionsArrow = kotest("assertions-arrow-jvm", Versions.KotestArrowAssertions)
     }
     
     object Koin {

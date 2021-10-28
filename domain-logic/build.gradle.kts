@@ -1,4 +1,5 @@
 dependencies {
+    implementation(projects.commonsLang)
     implementation(projects.domainModel)
-    implementation(Dependencies.Arrow.Core)
+    implementation(projects.domainBoundary)
 }

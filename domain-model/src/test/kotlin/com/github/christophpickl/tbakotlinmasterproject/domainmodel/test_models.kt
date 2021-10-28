@@ -1,13 +1,33 @@
 package com.github.christophpickl.tbakotlinmasterproject.domainmodel
 
+import arrow.core.NonEmptyList
+import com.github.christophpickl.tbakotlinmasterproject.commonstest.UUID_1
+import com.github.christophpickl.tbakotlinmasterproject.commonstest.forced
+
 fun Auction.Companion.any() = Auction(
-    title = Title.any()
+    id = AuctionId.any(),
+    title = Title.any(),
 )
 
-fun Title.Companion.any() = Title("any title")
+fun AuctionId.Companion.any() = AuctionId(UUID_1)
+fun Title.Companion.any() = Title("any title").forced()
 
 fun InternalFault.Companion.any() = InternalFault(
     internalMessage = "anyInternalMessage",
     displayMessage = "anyDisplayMessage",
     cause = null
 )
+
+fun NotFoundFault.Companion.any() = NotFoundFault(
+    internalMessage = "anyInternalMessage",
+    displayMessage = "anyDisplayMessage",
+    cause = null
+)
+
+fun ValidationFault.Companion.any() = ValidationFault(
+    invalidCases = NonEmptyList(InvalidCase.any(), emptyList()),
+    internalMessage = "anyInternalMessage",
+    displayMessage = "anyDisplayMessage"
+)
+
+fun InvalidCase.Companion.any() = pure("anyInvalidCase")

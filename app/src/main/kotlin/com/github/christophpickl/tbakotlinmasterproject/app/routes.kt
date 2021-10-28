@@ -26,7 +26,7 @@ class AuctionRoute(
     
     override fun Routing.install() {
         get("/auctions") {
-            val auctions = auctionService.getAll().flatMap {
+            val auctions = auctionService.loadAll().flatMap {
                 AuctionsRto(auctions = it.map { auction ->
                     auction.toAuctionRto()
                 }).right()

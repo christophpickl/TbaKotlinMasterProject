@@ -5,16 +5,16 @@ import io.ktor.server.testing.TestApplicationEngine
 import io.ktor.server.testing.withTestApplication
 import org.koin.core.module.Module
 
-fun withTest(vararg modules: Module, test: TestApplicationEngine.() -> Unit) {
+fun withTest(additionalModules: List<Module> = emptyList(), testCode: TestApplicationEngine.() -> Unit) {
     withTestApplication({
-        configureKtor(AppConfig(), modules.toList())
-    }, test)
+        configureKtor(AppConfig(), additionalModules)
+    }, testCode)
 }
 
-suspend fun DescribeSpecContainerContext.test(name: String, vararg modules: Module, test: TestApplicationEngine.() -> Unit) {
+suspend fun DescribeSpecContainerContext.test(name: String, additionalModules: List<Module> = emptyList(), testCode: TestApplicationEngine.() -> Unit) {
     it(name) {
-        withTest(*modules) {
-            test()
+        withTest(additionalModules) {
+            testCode()
         }
     }
 }

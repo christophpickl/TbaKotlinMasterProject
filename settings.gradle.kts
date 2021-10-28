@@ -1,10 +1,13 @@
 rootProject.name = "TbaKotlinMasterProject"
 
 include(
-    "app",
     "api-model",
+    "app",
+    "boundary-db",
     "commons-ktor",
+    "commons-lang",
     "commons-test",
+    "domain-boundary",
     "domain-logic",
     "domain-model",
 )

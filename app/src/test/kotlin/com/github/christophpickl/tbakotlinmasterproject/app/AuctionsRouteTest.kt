@@ -8,6 +8,7 @@ import com.github.christophpickl.tbakotlinmasterproject.commonstest.contentAs
 import com.github.christophpickl.tbakotlinmasterproject.commonstest.handleGet
 import com.github.christophpickl.tbakotlinmasterproject.commonstest.route
 import com.github.christophpickl.tbakotlinmasterproject.commonstest.statusShouldBeOk
+import com.github.christophpickl.tbakotlinmasterproject.commonstest.testModule
 import com.github.christophpickl.tbakotlinmasterproject.domainlogic.AuctionService
 import com.github.christophpickl.tbakotlinmasterproject.domainmodel.Auction
 import com.github.christophpickl.tbakotlinmasterproject.domainmodel.InternalFault
@@ -17,7 +18,6 @@ import io.kotest.matchers.shouldBe
 import io.ktor.http.HttpStatusCode
 import io.mockk.coEvery
 import io.mockk.mockk
-import org.koin.dsl.module
 
 class AuctionsRouteTest : DescribeSpec() {
     
@@ -28,8 +28,8 @@ class AuctionsRouteTest : DescribeSpec() {
     init {
         route("/auctions") {
             
-            test("Given an auction Then ok and return it", module { single { auctions } }) {
-                coEvery { auctions.getAll() } returns listOf(auction).right()
+            test("Given an auction Then ok and return it", testModule { single { auctions } }) {
+                coEvery { auctions.loadAll() } returns listOf(auction).right()
         
                 val response = handleGet("/auctions")
         
@@ -37,8 +37,8 @@ class AuctionsRouteTest : DescribeSpec() {
                 response.contentAs<AuctionsRto>() shouldBe AuctionsRto(listOf(AuctionRto(auction.title.value)))
             }
             
-            test("Given unknown fault Then error", module { single { auctions } }) {
-                coEvery { auctions.getAll() } returns internalFault.left()
+            test("Given unknown fault Then error", testModule { single { auctions } }) {
+                coEvery { auctions.loadAll() } returns internalFault.left()
         
                 val response = handleGet("/auctions")
         

@@ -3,6 +3,7 @@ package com.github.christophpickl.tbakotlinmasterproject.app
 import com.github.christophpickl.tbakotlinmasterproject.domainmodel.Fault
 import com.github.christophpickl.tbakotlinmasterproject.domainmodel.InternalFault
 import com.github.christophpickl.tbakotlinmasterproject.domainmodel.NotFoundFault
+import com.github.christophpickl.tbakotlinmasterproject.domainmodel.ValidationFault
 import io.ktor.application.ApplicationCall
 import io.ktor.http.HttpStatusCode
 import io.ktor.response.respond
@@ -15,6 +16,7 @@ suspend fun ApplicationCall.respondFault(fault: Fault) {
     val statusCode = when(fault) {
         is InternalFault -> HttpStatusCode.InternalServerError
         is NotFoundFault -> HttpStatusCode.NotFound
+        is ValidationFault -> HttpStatusCode.InternalServerError
     }
     respond(statusCode, ApiErrorRto(message = fault.displayMessage))
 }
