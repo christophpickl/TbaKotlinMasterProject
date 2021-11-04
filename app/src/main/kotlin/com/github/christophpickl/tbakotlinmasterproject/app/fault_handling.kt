@@ -1,9 +1,9 @@
 package com.github.christophpickl.tbakotlinmasterproject.app
 
-import com.github.christophpickl.tbakotlinmasterproject.domainmodel.Fault
-import com.github.christophpickl.tbakotlinmasterproject.domainmodel.InternalFault
-import com.github.christophpickl.tbakotlinmasterproject.domainmodel.NotFoundFault
-import com.github.christophpickl.tbakotlinmasterproject.domainmodel.ValidationFault
+import com.github.christophpickl.tbakotlinmasterproject.domain.domainmodel.Fault
+import com.github.christophpickl.tbakotlinmasterproject.domain.domainmodel.InternalFault
+import com.github.christophpickl.tbakotlinmasterproject.domain.domainmodel.NotFoundFault
+import com.github.christophpickl.tbakotlinmasterproject.domain.domainmodel.ValidationFault
 import io.ktor.application.ApplicationCall
 import io.ktor.http.HttpStatusCode
 import io.ktor.response.respond

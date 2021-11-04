@@ -1,14 +1,14 @@
 package com.github.christophpickl.tbakotlinmasterproject.app
 
-import com.github.christophpickl.tbakotlinmasterproject.commonsktor.Route
-import com.github.christophpickl.tbakotlinmasterproject.commonstest.contentAs
-import com.github.christophpickl.tbakotlinmasterproject.commonstest.handleGet
-import com.github.christophpickl.tbakotlinmasterproject.commonstest.route
-import com.github.christophpickl.tbakotlinmasterproject.commonstest.testModule
-import com.github.christophpickl.tbakotlinmasterproject.domainmodel.InternalFault
-import com.github.christophpickl.tbakotlinmasterproject.domainmodel.NotFoundFault
-import com.github.christophpickl.tbakotlinmasterproject.domainmodel.ValidationFault
-import com.github.christophpickl.tbakotlinmasterproject.domainmodel.any
+import com.github.christophpickl.tbakotlinmasterproject.commons.commonsktor.Route
+import com.github.christophpickl.tbakotlinmasterproject.commons.commonstest.contentAs
+import com.github.christophpickl.tbakotlinmasterproject.commons.commonstest.handleGet
+import com.github.christophpickl.tbakotlinmasterproject.commons.commonstest.route
+import com.github.christophpickl.tbakotlinmasterproject.commons.commonstest.testModule
+import com.github.christophpickl.tbakotlinmasterproject.domain.domainmodel.InternalFault
+import com.github.christophpickl.tbakotlinmasterproject.domain.domainmodel.NotFoundFault
+import com.github.christophpickl.tbakotlinmasterproject.domain.domainmodel.ValidationFault
+import com.github.christophpickl.tbakotlinmasterproject.domain.domainmodel.any
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.core.spec.style.scopes.DescribeSpecContainerContext
 import io.kotest.matchers.shouldBe

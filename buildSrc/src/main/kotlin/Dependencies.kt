@@ -1,4 +1,3 @@
-
 @Suppress("MayBeConstant", "SameParameterValue")
 object Dependencies {
     
@@ -35,7 +34,7 @@ object Dependencies {
     }
     
     val Mockk = "io.mockk:mockk:${Versions.Mockk}"
-    
+
     object Moshi {
         private fun moshi(artifactIdSuffix: String) = "com.squareup.moshi:$artifactIdSuffix:${Versions.Moshi}"
         val Moshi = moshi("moshi")

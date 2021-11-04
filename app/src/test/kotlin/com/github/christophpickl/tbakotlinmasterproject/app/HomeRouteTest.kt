@@ -1,8 +1,8 @@
 package com.github.christophpickl.tbakotlinmasterproject.app
 
-import com.github.christophpickl.tbakotlinmasterproject.commonstest.handleGet
-import com.github.christophpickl.tbakotlinmasterproject.commonstest.route
-import com.github.christophpickl.tbakotlinmasterproject.commonstest.statusShouldBeOk
+import com.github.christophpickl.tbakotlinmasterproject.commons.commonstest.handleGet
+import com.github.christophpickl.tbakotlinmasterproject.commons.commonstest.route
+import com.github.christophpickl.tbakotlinmasterproject.commons.commonstest.statusShouldBeOk
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.shouldBe
 

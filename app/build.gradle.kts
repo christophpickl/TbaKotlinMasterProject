@@ -1,17 +1,17 @@
 dependencies {
-    implementation(projects.apiModel)
-    implementation(projects.boundaryDb)
-    implementation(projects.commonsLang)
-    implementation(projects.commonsKtor)
-    implementation(projects.domainBoundary)
-    implementation(projects.domainModel)
-    implementation(projects.domainLogic)
+    implementation(project(":api:api-model"))
+    implementation(project(":boundary:boundary-db"))
+    implementation(project(":commons:commons-ktor"))
+    implementation(project(":commons:commons-lang"))
+    implementation(project(":domain:domain-boundary"))
+    implementation(project(":domain:domain-logic"))
+    implementation(project(":domain:domain-model"))
 
     implementation(Dependencies.Ktor.ServerNetty)
     implementation(Dependencies.Koin.Ktor)
     implementation(Dependencies.Arrow.Core)
     implementation(Dependencies.Logging.Logback)
     
-    testImplementation(project(":domain-model", "test"))
-    testImplementation(projects.commonsTest)
+    testImplementation(project(":domain:domain-model", "test"))
+    testImplementation(project(":commons:commons-test"))
 }

@@ -1,13 +1,13 @@
 package com.github.christophpickl.tbakotlinmasterproject.app
 
 import arrow.core.Either
-import com.github.christophpickl.tbakotlinmasterproject.apimodel.Rto
-import com.github.christophpickl.tbakotlinmasterproject.boundarydb.boundaryDb
-import com.github.christophpickl.tbakotlinmasterproject.commonsktor.installMoshi
-import com.github.christophpickl.tbakotlinmasterproject.commonsktor.installRoutes
-import com.github.christophpickl.tbakotlinmasterproject.commonstest.Modules
-import com.github.christophpickl.tbakotlinmasterproject.domainlogic.domainLogic
-import com.github.christophpickl.tbakotlinmasterproject.domainmodel.Fault
+import com.github.christophpickl.tbakotlinmasterproject.api.apimodel.Rto
+import com.github.christophpickl.tbakotlinmasterproject.boundary.boundarydb.boundaryDb
+import com.github.christophpickl.tbakotlinmasterproject.commons.commonsktor.installMoshi
+import com.github.christophpickl.tbakotlinmasterproject.commons.commonsktor.installRoutes
+import com.github.christophpickl.tbakotlinmasterproject.commons.commonslang.Modules
+import com.github.christophpickl.tbakotlinmasterproject.domain.domainlogic.domainLogic
+import com.github.christophpickl.tbakotlinmasterproject.domain.domainmodel.Fault
 import io.ktor.application.Application
 import io.ktor.application.ApplicationCall
 import io.ktor.application.install

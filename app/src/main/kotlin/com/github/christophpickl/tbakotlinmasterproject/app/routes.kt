@@ -2,11 +2,11 @@ package com.github.christophpickl.tbakotlinmasterproject.app
 
 import arrow.core.flatMap
 import arrow.core.right
-import com.github.christophpickl.tbakotlinmasterproject.apimodel.AuctionRto
-import com.github.christophpickl.tbakotlinmasterproject.apimodel.AuctionsRto
-import com.github.christophpickl.tbakotlinmasterproject.commonsktor.Route
-import com.github.christophpickl.tbakotlinmasterproject.domainlogic.AuctionService
-import com.github.christophpickl.tbakotlinmasterproject.domainmodel.Auction
+import com.github.christophpickl.tbakotlinmasterproject.api.apimodel.AuctionRto
+import com.github.christophpickl.tbakotlinmasterproject.api.apimodel.AuctionsRto
+import com.github.christophpickl.tbakotlinmasterproject.commons.commonsktor.Route
+import com.github.christophpickl.tbakotlinmasterproject.domain.domainlogic.AuctionService
+import com.github.christophpickl.tbakotlinmasterproject.domain.domainmodel.Auction
 import io.ktor.application.call
 import io.ktor.response.respondText
 import io.ktor.routing.Routing

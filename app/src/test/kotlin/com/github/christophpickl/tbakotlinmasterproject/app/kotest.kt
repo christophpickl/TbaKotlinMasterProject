@@ -1,6 +1,6 @@
 package com.github.christophpickl.tbakotlinmasterproject.app
 
-import com.github.christophpickl.tbakotlinmasterproject.commonstest.MockListener
+import com.github.christophpickl.tbakotlinmasterproject.commons.commonstest.MockListener
 import io.kotest.core.config.AbstractProjectConfig
 import io.kotest.core.listeners.Listener
 
