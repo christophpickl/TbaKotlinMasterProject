@@ -12,6 +12,8 @@ fun Auction.Companion.any() = Auction(
 fun AuctionId.Companion.any() = AuctionId(UUID_1)
 fun Title.Companion.any() = Title("any title").forced()
 
+fun Fault.Companion.any() = InternalFault.any()
+
 fun InternalFault.Companion.any() = InternalFault(
     internalMessage = "anyInternalMessage",
     displayMessage = "anyDisplayMessage",

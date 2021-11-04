@@ -1,8 +1,12 @@
 package com.github.christophpickl.tbakotlinmasterproject.boundary.boundarydb
 
-internal typealias UuidString = String
+import java.util.UUID
 
-internal data class AuctionDbo(
-    val id: UuidString,
+data class AuctionDbo(
+    val id: UUID,
     val title: String,
-)
+) {
+    companion object {
+        val TITLE_MAXLENGTH = 255
+    }
+}

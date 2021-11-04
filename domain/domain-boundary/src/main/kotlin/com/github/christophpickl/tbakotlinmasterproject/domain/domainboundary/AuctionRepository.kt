@@ -6,4 +6,5 @@ import com.github.christophpickl.tbakotlinmasterproject.domain.domainmodel.Fault
 
 interface AuctionRepository {
     suspend fun loadAll(): Either<Fault, List<Auction>>
+    suspend fun insert(auction: Auction): Either<Fault, Unit>
 }

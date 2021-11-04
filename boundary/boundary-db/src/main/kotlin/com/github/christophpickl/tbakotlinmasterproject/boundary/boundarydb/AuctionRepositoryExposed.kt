@@ -1,38 +1,29 @@
 package com.github.christophpickl.tbakotlinmasterproject.boundary.boundarydb
 
 import arrow.core.Either
-import arrow.core.computations.either
-import com.github.christophpickl.tbakotlinmasterproject.domain.domainboundary.AuctionRepository
-import com.github.christophpickl.tbakotlinmasterproject.domain.domainmodel.Auction
-import com.github.christophpickl.tbakotlinmasterproject.domain.domainmodel.AuctionId
 import com.github.christophpickl.tbakotlinmasterproject.domain.domainmodel.Fault
-import com.github.christophpickl.tbakotlinmasterproject.domain.domainmodel.Title
-import com.github.christophpickl.tbakotlinmasterproject.domain.domainmodel.ValidationFault
-import java.util.UUID
-
-internal class AuctionRepositoryAdapter(
-    private val auctionRepositoryExposed: AuctionRepositoryExposed
-) : AuctionRepository {
-    override suspend fun loadAll(): Either<Fault, List<Auction>> = either {
-        auctionRepositoryExposed.selectAll().map { dbos ->
-            dbos.map { dbo ->
-                dbo.toAuction().bind()
-            }
-        }.bind()
-    }
-
-    private suspend fun AuctionDbo.toAuction(): Either<Fault, Auction> = either {
-        Auction(
-            id = AuctionId(id.toUuid().bind()),
-            title = Title(title).mapLeft {
-                ValidationFault(it, "Title from DB is invalid for auction with ID: '$id'!")
-            }.bind(),
-        )
-    }
-}
+import org.jetbrains.exposed.dao.EntityID
+import org.jetbrains.exposed.sql.Database
+import org.jetbrains.exposed.sql.insert
+import org.jetbrains.exposed.sql.selectAll
 
 internal class AuctionRepositoryExposed {
-    suspend fun selectAll(): Either<Fault, List<AuctionDbo>> = either {
-        listOf(AuctionDbo(UUID.randomUUID().toString(), "title"))
-    }
+
+    fun selectAll(db: Database): Either<Fault, List<AuctionDbo>> =
+        db.transactionSafe("Select failed!") {
+            AuctionTable.selectAll().map {
+                AuctionDbo(
+                    id = it[AuctionTable.id].value,
+                    title = it[AuctionTable.title]
+                )
+            }
+        }
+
+    fun insert(db: Database, dbo: AuctionDbo): Either<Fault, Unit> =
+        db.transactionSafe("Insert failed for: $dbo") {
+            AuctionTable.insert { row ->
+                row[AuctionTable.id] = EntityID(dbo.id, AuctionTable)
+                row[AuctionTable.title] = dbo.title
+            }
+        }
 }

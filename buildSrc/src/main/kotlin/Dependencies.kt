@@ -5,14 +5,20 @@ object Dependencies {
         private fun arrow(artifactIdSuffix: String) = "io.arrow-kt:arrow-$artifactIdSuffix:${Versions.Arrow}"
         val Core = arrow("core")
     }
-    
+
+    val Exposed = "org.jetbrains.exposed:exposed:${Versions.Exposed}"
+
+    val H2 = "com.h2database:h2:${Versions.H2}"
+
     val Jackson = "com.fasterxml.jackson.module:jackson-module-kotlin:${Versions.Jackson}"
-    
+
     object Kotest {
         private fun kotest(artifactIdSuffix: String, version: String = Versions.Kotest) = "io.kotest:kotest-$artifactIdSuffix:$version"
+        private fun kotestExtension(artifactIdSuffix: String, version: String) = "io.kotest.extensions:kotest-$artifactIdSuffix:$version"
         val RunnerJunit5 = kotest("runner-junit5")
         val AssertionsCoreJvm = kotest("assertions-core-jvm")
-        val AssertionsArrow = kotest("assertions-arrow-jvm", Versions.KotestArrowAssertions)
+        // not the regular assertions-arrow-jvm though!
+        val AssertionsArrow = kotestExtension("assertions-arrow", Versions.KotestArrowAssertions)
     }
     
     object Koin {

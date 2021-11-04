@@ -30,6 +30,10 @@ subprojects {
 		testImplementation(Dependencies.Kotest.RunnerJunit5)
 		testImplementation(Dependencies.Kotest.AssertionsCoreJvm)
 		testImplementation(Dependencies.Mockk)
+
+		if(project.name != "commons-test") {
+			testImplementation(project(":commons:commons-test"))
+		}
 	}
 	
 	tasks.withType<KotlinCompile> {
@@ -50,7 +54,7 @@ subprojects {
 			rejectPatterns.any { version.contains(it) }
 		}
 	}
-	
+
 	if(project.name == "domain-model") {
 		configurations {
 			create("test")
