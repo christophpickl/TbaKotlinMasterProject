@@ -7,15 +7,16 @@ import org.jetbrains.exposed.sql.Table
 import org.jetbrains.exposed.sql.deleteAll
 import org.jetbrains.exposed.sql.transactions.transaction
 import java.sql.ResultSet
-import kotlin.random.Random
+import java.util.concurrent.atomic.AtomicLong
 
 private val allTables = listOf<Table>(AuctionTable)
 
+private val dbCounter = AtomicLong(1L)
 fun DatabaseConfig.Companion.testConfig(nameRetriever: () -> Unit): DatabaseConfig {
     val testClassName = retrieveEnclosingName(nameRetriever)
     return DatabaseConfig(
-        url = "jdbc:h2:mem:${testClassName}_${Random.nextInt()};DB_CLOSE_DELAY=-1;",
-        driver = "org.h2.Driver",
+        jdbcUrl = "jdbc:h2:mem:${testClassName}_${dbCounter.getAndIncrement()};DB_CLOSE_DELAY=-1;",
+        driverClassName = "org.h2.Driver",
         username = "",
         password = ""
     )

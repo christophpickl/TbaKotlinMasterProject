@@ -36,8 +36,8 @@ fun Application.configureKtor(config: AppConfig, additionalModules: List<Module>
 private fun Application.installKoin(additionalModules: List<Module>) {
     val dbConfig = DatabaseConfig(
         // FIXME implement proper config
-        url = "",
-        driver = "",
+        jdbcUrl = "",
+        driverClassName = "",
         username = "",
         password = ""
     )

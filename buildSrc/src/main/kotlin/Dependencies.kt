@@ -9,7 +9,7 @@ object Dependencies {
     val Exposed = "org.jetbrains.exposed:exposed:${Versions.Exposed}"
 
     val H2 = "com.h2database:h2:${Versions.H2}"
-
+    val Hikari = "com.zaxxer:HikariCP:${Versions.Hikari}"
     val Jackson = "com.fasterxml.jackson.module:jackson-module-kotlin:${Versions.Jackson}"
 
     object Kotest {

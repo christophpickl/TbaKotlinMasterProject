@@ -4,6 +4,7 @@ object Versions {
     val Arrow = "1.0.0"
     val Exposed = "0.17.14"
     val H2 = "1.4.200"
+    val Hikari = "5.0.0"
     val Jackson = "2.13.+"
     val Ktor = "1.6.4"
     val Kotest = "4.6.3"
