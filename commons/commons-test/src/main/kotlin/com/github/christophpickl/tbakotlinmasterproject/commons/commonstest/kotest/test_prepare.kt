@@ -39,6 +39,12 @@ class LazyTestPrepareListener(
         }
     }
 
+//    override suspend fun beforeTest(testCase: TestCase) {
+//        if(testCase.spec.tags().any { tags.contains(it)}) {
+//
+//        }
+//    }
+
     suspend fun afterProject() {
         log.info { "afterProject()" }
         state = state.tearDown(this)

@@ -1,6 +1,7 @@
 package com.github.christophpickl.tbakotlinmasterproject.boundary.boundarydb
 
 import com.github.christophpickl.tbakotlinmasterproject.commons.commonslang.retrieveEnclosingName
+import mu.KotlinLogging.logger
 import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.SchemaUtils
 import org.jetbrains.exposed.sql.Table
@@ -10,8 +11,10 @@ import java.sql.ResultSet
 import java.util.concurrent.atomic.AtomicLong
 
 private val allTables = listOf<Table>(AuctionTable)
-
 private val dbCounter = AtomicLong(1L)
+
+private val log = logger {}
+
 fun DatabaseConfig.Companion.testConfig(nameRetriever: () -> Unit): DatabaseConfig {
     val testClassName = retrieveEnclosingName(nameRetriever)
     return DatabaseConfig(
@@ -29,12 +32,14 @@ fun connectTestDb(nameRetriever: () -> Unit): Database {
 }
 
 fun Database.createAllTables() {
+    log.info { "createAllTables" }
     transaction(this) {
         SchemaUtils.create(*allTables.toTypedArray())
     }
 }
 
 fun Database.deleteAll() {
+    log.debug { "deleteAll" }
     transaction(this) {
         allTables.forEach {
             it.deleteAll()

@@ -2,6 +2,7 @@
 
 package com.github.christophpickl.tbakotlinmasterproject.app
 
+import com.github.christophpickl.tbakotlinmasterproject.boundary.boundarydb.DatabaseConfig
 import io.ktor.server.engine.embeddedServer
 import io.ktor.server.netty.Netty
 import mu.KotlinLogging.logger
@@ -9,7 +10,16 @@ import mu.KotlinLogging.logger
 private val log = logger {}
 
 fun main() {
-    val config = AppConfig()
+    val config = AppConfig(
+        port = 8080,
+        dbConfig = DatabaseConfig(
+            // FIXME read from env.
+            jdbcUrl = "",
+            driverClassName = "",
+            username = "",
+            password = ""
+        )
+    )
     log.info { "Starting up application: $config" }
     embeddedServer(Netty, port = config.port) {
         configureKtor(config)
@@ -17,5 +27,6 @@ fun main() {
 }
 
 data class AppConfig(
-    val port: Int = 8080
+    val port: Int,
+    val dbConfig: DatabaseConfig
 )

@@ -11,7 +11,9 @@ dependencies {
     implementation(Dependencies.Koin.Ktor)
     implementation(Dependencies.Arrow.Core)
     implementation(Dependencies.Logging.Logback)
-    
+
+    // TODO add DB: runtimeOnly("org.postgresql:postgresql:42.2.18")
+
     testImplementation(project(":domain:domain-model", "test"))
     testImplementation(project(":commons:commons-test"))
 }

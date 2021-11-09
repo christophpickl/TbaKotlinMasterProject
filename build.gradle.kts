@@ -55,7 +55,7 @@ subprojects {
 		}
 	}
 
-	if(project.name == "domain-model") {
+	if(setOf("domain-model", "boundary-db").contains(project.name)) {
 		configurations {
 			create("test")
 		}
