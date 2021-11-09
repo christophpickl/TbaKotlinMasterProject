@@ -11,6 +11,7 @@ import com.github.christophpickl.tbakotlinmasterproject.commons.commonstest.stat
 import com.github.christophpickl.tbakotlinmasterproject.commons.commonstest.testModule
 import com.github.christophpickl.tbakotlinmasterproject.domain.domainlogic.AuctionService
 import com.github.christophpickl.tbakotlinmasterproject.domain.domainmodel.Auction
+import com.github.christophpickl.tbakotlinmasterproject.domain.domainmodel.Auctions
 import com.github.christophpickl.tbakotlinmasterproject.domain.domainmodel.InternalFault
 import com.github.christophpickl.tbakotlinmasterproject.domain.domainmodel.any
 import io.kotest.core.spec.style.DescribeSpec
@@ -23,13 +24,13 @@ class AuctionsRouteTest : DescribeSpec() {
     
     private val auction = Auction.any()
     private val internalFault = InternalFault.any()
-    private val auctions = mockk<AuctionService>()
+    private val auctionService = mockk<AuctionService>()
     
     init {
         route("/auctions") {
             
-            test("Given an auction Then ok and return it", testModule { single { auctions } }) {
-                coEvery { auctions.loadAll() } returns listOf(auction).right()
+            test("Given an auction Then ok and return it", testModule { single { auctionService } }) {
+                coEvery { auctionService.loadAll() } returns Auctions(listOf(auction)).right()
         
                 val response = handleGet("/auctions")
         
@@ -37,8 +38,8 @@ class AuctionsRouteTest : DescribeSpec() {
                 response.contentAs<AuctionsRto>() shouldBe AuctionsRto(listOf(AuctionRto(auction.title.value)))
             }
             
-            test("Given unknown fault Then error", testModule { single { auctions } }) {
-                coEvery { auctions.loadAll() } returns internalFault.left()
+            test("Given unknown fault Then error", testModule { single { auctionService } }) {
+                coEvery { auctionService.loadAll() } returns internalFault.left()
         
                 val response = handleGet("/auctions")
         

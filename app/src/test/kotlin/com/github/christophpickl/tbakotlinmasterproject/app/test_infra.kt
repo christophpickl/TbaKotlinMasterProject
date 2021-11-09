@@ -11,8 +11,13 @@ fun withTest(additionalModules: List<Module> = emptyList(), testCode: TestApplic
     }, testCode)
 }
 
-suspend fun DescribeSpecContainerContext.test(name: String, additionalModules: List<Module> = emptyList(), testCode: TestApplicationEngine.() -> Unit) {
-    it(name) {
+suspend fun DescribeSpecContainerContext.test(
+    name: String,
+    additionalModules: List<Module> = emptyList(),
+    enabled: Boolean = true,
+    testCode: TestApplicationEngine.() -> Unit
+) {
+    it(name).config(enabled = enabled) {
         withTest(additionalModules) {
             testCode()
         }

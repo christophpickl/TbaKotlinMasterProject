@@ -4,6 +4,12 @@ import arrow.core.ValidatedNel
 import arrow.core.validNel
 import java.util.UUID
 
+data class Auctions(
+    val value: List<Auction>
+) : List<Auction> by value {
+    companion object
+}
+
 data class Auction(
     val id: AuctionId,
     val title: Title

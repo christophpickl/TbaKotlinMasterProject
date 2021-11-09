@@ -4,6 +4,10 @@ import arrow.core.NonEmptyList
 import com.github.christophpickl.tbakotlinmasterproject.commons.commonslang.forced
 import com.github.christophpickl.tbakotlinmasterproject.commons.commonstest.UUID_1
 
+fun Auctions.Companion.any() = Auctions(
+    value = listOf(Auction.any())
+)
+
 fun Auction.Companion.any() = Auction(
     id = AuctionId.any(),
     title = Title.any(),

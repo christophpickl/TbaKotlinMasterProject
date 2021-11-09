@@ -46,7 +46,6 @@ private fun Application.installKoin(additionalModules: List<Module>) {
             add(Modules.boundaryDb(dbConfig))
             add(Modules.domainLogic())
             add(Modules.app())
-            // TODO wire boundary module and pass some (raw) config values
             log.debug { "Adding ${additionalModules.size} additional koin modules." }
             addAll(additionalModules)
         })

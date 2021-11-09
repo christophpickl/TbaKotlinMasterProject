@@ -7,6 +7,6 @@ data class AuctionDbo(
     val title: String,
 ) {
     companion object {
-        val TITLE_MAXLENGTH = 255
+        const val TITLE_MAXLENGTH = 255
     }
 }

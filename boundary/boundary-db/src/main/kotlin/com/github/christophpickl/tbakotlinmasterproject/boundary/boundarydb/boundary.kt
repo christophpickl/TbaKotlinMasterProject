@@ -5,6 +5,7 @@ import arrow.core.computations.either
 import com.github.christophpickl.tbakotlinmasterproject.domain.domainboundary.AuctionRepository
 import com.github.christophpickl.tbakotlinmasterproject.domain.domainmodel.Auction
 import com.github.christophpickl.tbakotlinmasterproject.domain.domainmodel.AuctionId
+import com.github.christophpickl.tbakotlinmasterproject.domain.domainmodel.Auctions
 import com.github.christophpickl.tbakotlinmasterproject.domain.domainmodel.Fault
 import com.github.christophpickl.tbakotlinmasterproject.domain.domainmodel.Title
 import com.github.christophpickl.tbakotlinmasterproject.domain.domainmodel.ValidationFault
@@ -15,12 +16,14 @@ internal class AuctionRepositoryAdapter(
     private val database: Database
 ) : AuctionRepository {
 
-    override suspend fun loadAll(): Either<Fault, List<Auction>> = either {
-        auctionRepositoryExposed.selectAll(database).map { dbos ->
-            dbos.map { dbo ->
-                dbo.toAuction().bind()
-            }
-        }.bind()
+    override suspend fun loadAll(): Either<Fault, Auctions> = either {
+        Auctions(
+            auctionRepositoryExposed.selectAll(database).map { dbos ->
+                dbos.map { dbo ->
+                    dbo.toAuction().bind()
+                }
+            }.bind()
+        )
     }
 
     override suspend fun insert(auction: Auction): Either<Fault, Unit> = either {
