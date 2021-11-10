@@ -5,7 +5,19 @@ import io.kotest.core.listeners.ProjectListener
 import io.kotest.core.listeners.TestListener
 import io.kotest.core.spec.Spec
 import mu.KotlinLogging.logger
+/*
+object DatabaseMigrationListener : LazyTestPreparer(
+    tags = setOf(Tags.Database),
+    lazySetup = {
+    },
+    tearDown = {
+    }
+)
 
+object KotestProjectConfig : AbstractProjectConfig() {
+    override fun listeners(): List<Listener> = listOf(DatabaseMigrationListener)
+}
+ */
 abstract class LazyTestPreparer(
     tags: Set<Tag>,
     lazySetup: suspend () -> Unit = {},

@@ -26,10 +26,6 @@ subprojects {
 		if(!setOf("api-model", "domain-model").contains(project.name)) {
 			implementation(Dependencies.Koin.Core)
 		}
-		
-		testImplementation(Dependencies.Kotest.RunnerJunit5)
-		testImplementation(Dependencies.Kotest.AssertionsCoreJvm)
-		testImplementation(Dependencies.Mockk)
 
 		if(project.name != "commons-test") {
 			testImplementation(project(":commons:commons-test"))

@@ -5,12 +5,10 @@ import io.kotest.core.listeners.Listener
 
 @Suppress("unused")
 object KotestProjectConfig : AbstractProjectConfig() {
-    override fun listeners(): List<Listener> {
-        return mutableListOf<Listener>().also {
-            it.add(DatabaseMigrationListener)
+    override fun listeners(): List<Listener> =
+        mutableListOf<Listener>().also {
             if (TestEnvironment.current == TestEnvironment.Local) {
-                it.add(KtorAppStarter(TestEnvironment.localPort))
+                it.add(AppStarter(TestEnvironment.localPort))
             }
         }
-    }
 }

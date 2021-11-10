@@ -3,7 +3,6 @@ package com.github.christophpickl.tbakotlinmasterproject.acceptancetests
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.shouldBe
 import io.ktor.client.call.receive
-import io.ktor.http.HttpMethod
 import io.ktor.http.HttpStatusCode
 
 class AuctionsRouteAcceptanceTest : DescribeSpec() {
@@ -11,7 +10,7 @@ class AuctionsRouteAcceptanceTest : DescribeSpec() {
     init {
         describe("When GET /auctions") {
             it("Then return some") {
-                val response = request(HttpMethod.Get, "/auctions")
+                val response = Http.GET("/auctions")
 
                 response.status shouldBe HttpStatusCode.OK
                 // TODO structural JSON comparison
