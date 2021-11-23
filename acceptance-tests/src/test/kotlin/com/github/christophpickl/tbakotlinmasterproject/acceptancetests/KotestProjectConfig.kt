@@ -8,7 +8,8 @@ object KotestProjectConfig : AbstractProjectConfig() {
     override fun listeners(): List<Listener> =
         mutableListOf<Listener>().also {
             if (TestEnvironment.current == TestEnvironment.Local) {
-                it.add(AppStarter(TestEnvironment.localPort))
+                it.add(LocalInfraListener(LocalInfraManager(TestEnvironment.localPort)))
             }
         }
 }
+

@@ -4,7 +4,7 @@ import arrow.core.NonEmptyList
 import arrow.core.invalidNel
 
 const val DEFAULT_DISPLAY_MESSAGE = "Unknown error."
-// TODO change to interface
+
 sealed class Fault(
     val internalMessage: String,
     val displayMessage: String,

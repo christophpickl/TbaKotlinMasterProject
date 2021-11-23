@@ -3,6 +3,7 @@
 package com.github.christophpickl.tbakotlinmasterproject.app
 
 import com.github.christophpickl.tbakotlinmasterproject.boundary.boundarydb.DatabaseConfig
+import com.github.christophpickl.tbakotlinmasterproject.commons.commonslang.readRuntimeVariableOrThrow
 import io.ktor.server.engine.embeddedServer
 import io.ktor.server.netty.Netty
 import mu.KotlinLogging.logger
@@ -13,11 +14,10 @@ fun main() {
     val config = AppConfig(
         port = 8080,
         dbConfig = DatabaseConfig(
-            // FIXME read from env.
-            jdbcUrl = "",
-            driverClassName = "",
-            username = "",
-            password = ""
+            jdbcUrl = readRuntimeVariableOrThrow("KMP_DB_URL"),
+            driverClassName = readRuntimeVariableOrThrow("KMP_DB_DRIVER"),
+            username = readRuntimeVariableOrThrow("KMP_DB_USERNAME"),
+            password = readRuntimeVariableOrThrow("KMP_DB_PASSWORD")
         )
     )
     log.info { "Starting up application: $config" }

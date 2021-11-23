@@ -12,7 +12,7 @@ dependencies {
     implementation(Dependencies.Arrow.Core)
     implementation(Dependencies.Logging.Logback)
 
-    // TODO add DB: runtimeOnly("org.postgresql:postgresql:42.2.18")
+    runtimeOnly(Dependencies.Postgres)
 
     testImplementation(project(":domain:domain-model", "test"))
     testImplementation(project(":commons:commons-test"))

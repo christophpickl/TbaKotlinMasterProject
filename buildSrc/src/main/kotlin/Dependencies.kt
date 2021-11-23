@@ -19,6 +19,7 @@ object Dependencies {
         val AssertionsCoreJvm = kotest("assertions-core-jvm")
         // not the regular assertions-arrow-jvm though!
         val AssertionsArrow = kotestExtension("assertions-arrow", Versions.KotestArrowAssertions)
+        val AssertionsJson = kotest("assertions-json")
     }
     
     object Koin {
@@ -47,5 +48,11 @@ object Dependencies {
         val Moshi = moshi("moshi")
         val Kotlin = moshi("moshi-kotlin")
         val Ktor = "com.hypercubetools:ktor-moshi-server:${Versions.MoshiKtor}"
+    }
+
+    val Postgres = "org.postgresql:postgresql:${Versions.Postgres}"
+
+    object Testcontainers {
+        val Postgres = "org.testcontainers:postgresql:${Versions.TestcontainersPostgres}"
     }
 }

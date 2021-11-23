@@ -4,9 +4,8 @@ import com.github.christophpickl.tbakotlinmasterproject.app.AppConfig
 import com.github.christophpickl.tbakotlinmasterproject.app.configureKtor
 import com.github.christophpickl.tbakotlinmasterproject.boundary.boundarydb.DatabaseConfig
 import com.github.christophpickl.tbakotlinmasterproject.commons.commonsktor.Route
-import io.kotest.core.listeners.BeforeTestListener
-import io.kotest.core.listeners.ProjectListener
-import io.kotest.core.test.TestCase
+import com.github.christophpickl.tbakotlinmasterproject.commons.commonstest.Tags
+import com.github.christophpickl.tbakotlinmasterproject.commons.commonstest.kotest.LazyTestPreparer
 import io.ktor.application.ApplicationStarted
 import io.ktor.server.engine.embeddedServer
 import io.ktor.server.netty.Netty
@@ -15,23 +14,38 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import mu.KotlinLogging
+import mu.KotlinLogging.logger
 import org.koin.dsl.bind
 import org.koin.dsl.module
 import org.testcontainers.containers.PostgreSQLContainer
 import java.util.concurrent.BlockingQueue
 import java.util.concurrent.LinkedBlockingQueue
 
-class AppStarter(
-    private val port: Int
-) : ProjectListener, BeforeTestListener {
+class LocalInfraListener(
+    private val manager: LocalInfraManager
+) : LazyTestPreparer(
+    tags = setOf(Tags.RequiresPostgresTestcontainers),
+    lazyBeforeSpecPreparation = {
+        manager.startInfra()
+    },
+    lazyBeforeTestPreparation = {
+        manager.resetData()
+    },
+    lazyAfterProjectPostperation = {
+        manager.stopInfra()
+    }
+)
 
-    private val log = KotlinLogging.logger {}
+class LocalInfraManager(
+    private val port: Int
+) {
+
+    private val log = logger {}
     private lateinit var ktor: NettyApplicationEngine
     private lateinit var ktorJob: Job
     private lateinit var postgres: PostgreSQLContainer<Nothing>
 
-    override suspend fun beforeProject() {
+    suspend fun startInfra() {
         postgres = startPostgres()
         val config = AppConfig(
             port = port,
@@ -47,8 +61,17 @@ class AppStarter(
         AcceptanceTestRoute.requestCreateTables()
     }
 
-    override suspend fun beforeTest(testCase: TestCase) {
+    suspend fun resetData() {
         AcceptanceTestRoute.requestDeleteAll()
+    }
+
+    suspend fun stopInfra() {
+        log.info { "Stopping Ktor server." }
+        ktor.stop(2_000L, 5_000L)
+        ktorJob.join()
+
+        log.info { "Stopping PostgreSQL testcontainer." }
+        postgres.stop()
     }
 
     private fun startPostgres(): PostgreSQLContainer<Nothing> {
@@ -76,14 +99,5 @@ class AppStarter(
 
     private fun testModule() = module {
         single { AcceptanceTestRoute(get()) } bind Route::class
-    }
-
-    override suspend fun afterProject() {
-        log.info { "Stopping Ktor server." }
-        ktor.stop(2_000L, 5_000L)
-        ktorJob.join()
-
-        log.info { "Stopping PostgreSQL testcontainer." }
-        postgres.stop()
     }
 }

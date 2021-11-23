@@ -2,8 +2,10 @@ dependencies {
     implementation(project(":app"))
     implementation(project(":boundary:boundary-db"))
     implementation(project(":boundary:boundary-db", "test"))
+    implementation(project(":commons:commons-lang"))
     implementation(project(":commons:commons-test"))
     implementation(project(":commons:commons-ktor"))
+    implementation(Dependencies.Testcontainers.Postgres)
 
     implementation(Dependencies.Exposed)
     implementation(Dependencies.Ktor.ServerNetty)
@@ -16,7 +18,5 @@ dependencies {
     implementation(Dependencies.Kotest.AssertionsArrow)
     implementation(Dependencies.Kotest.AssertionsCoreJvm)
 
-    // TODO outsource strings
-    runtimeOnly("org.postgresql:postgresql:42.2.18")
-    implementation("org.testcontainers:postgresql:1.16.2")
+    runtimeOnly(Dependencies.Postgres)
 }

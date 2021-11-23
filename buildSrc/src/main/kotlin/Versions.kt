@@ -10,12 +10,14 @@ object Versions {
     val Kotest = "4.6.3"
     val KotestArrowAssertions = "1.0.3"
     val Koin = "3.1.2"
+    val Logback = "1.2.6"
     val Mockk = "1.12.0"
     val Moshi = "1.12.0"
     val MoshiKtor = "2.1.0"
     val MuLogging = "2.0.6"
-    val Logback = "1.2.6"
-    
+    val Postgres = "42.2.18"
+    val TestcontainersPostgres = "1.16.2"
+
     object Plugins {
         val Kotlin = "1.5.31"
         val Kotest = "0.3.8"

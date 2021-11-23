@@ -6,5 +6,7 @@ dependencies {
     api(Dependencies.Kotest.AssertionsArrow)
     api(Dependencies.Kotest.AssertionsCoreJvm)
     api(Dependencies.Kotest.RunnerJunit5)
+    api(Dependencies.Kotest.AssertionsJson)
+
     implementation(Dependencies.Jackson)
 }
