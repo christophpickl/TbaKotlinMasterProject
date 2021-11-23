@@ -6,8 +6,9 @@ Sample project with Kotlin technologies used at TBAuctions
   * test tags: needsClearDb, usesTestEndpoints, writesApi, readOnly
   * moduels: TestEndpoints, TestApp (connection to Db), TestSpecs (uses endpoints at runtime); all startup with docker (both apps)
 * detekt
+* split app-main and app-ktor, so app-ktor can be used by a modified deployable?! or boundary-http?
 * add liquibase! (MS SQL solution)
-* KTS script
+* KTS script; for docker-compose; colorized output
 * Submodules: api-sdk.
 * fault handling + error pages
 * CRUD operation

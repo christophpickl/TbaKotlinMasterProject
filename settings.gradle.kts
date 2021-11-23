@@ -1,7 +1,10 @@
 rootProject.name = "TbaKotlinMasterProject"
 
 include(
-    "acceptance-tests",
+    "acceptance",
+    "acceptance:app",
+    "acceptance:routes",
+    "acceptance:tests",
     "api",
     "api:api-model",
     "app",

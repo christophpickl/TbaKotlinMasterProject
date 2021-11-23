@@ -3,13 +3,19 @@
 build/
 .idea/
 
-acceptance-tests/out/
+acceptance/out/
+acceptance/app/out/
+acceptance/routes/out/
+acceptance/tests/out/
 api/api-model/out/
 app/out/
+boundary/out/
+boundary/boundary-db/out/
+commons/out/
 commons/commons-ktor/out/
 commons/commons-lang/out/
 commons/commons-test/out/
-boundary/boundary-db/out/
+domain/out/
 domain/domain-boundary/out/
 domain/domain-logic/out/
 domain/domain-model/out/

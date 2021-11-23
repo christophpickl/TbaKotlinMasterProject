@@ -31,6 +31,7 @@ object Dependencies {
     object Ktor {
         private fun ktor(artifactIdSuffix: String) = "io.ktor:ktor-$artifactIdSuffix:${Versions.Ktor}"
         val Client = ktor("client-core")
+        val ClientCio = ktor("client-cio-jvm")
         val ServerNetty = ktor("server-netty")
         val ServerCore = ktor("server-core")
         val ServerTestHost = ktor("server-test-host")
