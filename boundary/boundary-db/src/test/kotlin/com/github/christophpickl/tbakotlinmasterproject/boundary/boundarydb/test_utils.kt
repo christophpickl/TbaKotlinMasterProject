@@ -53,13 +53,21 @@ fun Database.query(sql: String): ResultSet {
 }
 
 fun Database.execute(sql: String): Int {
-    val stmt = connector().createStatement()
-    return stmt.executeUpdate(sql)
+    val connection = connector()
+    val stmt = connection.createStatement()
+    try {
+        val result = stmt.executeUpdate(sql)
+        connection.commit()
+        return result
+    } catch (e: Exception) {
+        connection.rollback()
+        throw e
+    }
 }
 
 fun ResultSet.countRows(): Int {
     var count = 0
-    while(next()) {
+    while (next()) {
         count++
     }
     return count

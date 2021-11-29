@@ -6,6 +6,7 @@ Sample project with Kotlin technologies used at TBAuctions
   * test tags: needsClearDb, usesTestEndpoints, writesApi, readOnly
   * moduels: TestEndpoints, TestApp (connection to Db), TestSpecs (uses endpoints at runtime); all startup with docker (both apps)
 * detekt
+* use docker-compose env file
 * use arrow Cont for "query like DB transactions"
 * investigate knit + dokka (documentation)
 * investigate kover

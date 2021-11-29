@@ -11,7 +11,7 @@ import io.kotest.core.spec.style.scopes.DescribeSpecContainerContext
 import org.jetbrains.exposed.sql.Database
 import org.koin.core.Koin
 
-class AuctionRepositoryModuleTest : DescribeSpec() {
+internal class AuctionRepositoryModuleTest : DescribeSpec() {
     init {
         describe("Given boundary-db module") {
 

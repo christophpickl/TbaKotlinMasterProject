@@ -1,9 +1,13 @@
+@file:JvmName("Util")
 package com.github.christophpickl.tbakotlinmasterproject.commons.commonslang
 
 import arrow.core.Either
 import arrow.core.left
 import arrow.core.right
+import mu.KotlinLogging.logger
 import java.util.UUID
+
+private val log = logger {}
 
 fun String.toUuid(): Either<CommonFault, UUID> =
     try {
@@ -12,6 +16,7 @@ fun String.toUuid(): Either<CommonFault, UUID> =
         CommonFault("Invalid UUID: $this", cause = e).left()
     }
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun retrieveEnclosingName(noinline func: () -> Unit): String {
     val name = func.javaClass.name
     val slicedName = when {
@@ -22,15 +27,13 @@ inline fun retrieveEnclosingName(noinline func: () -> Unit): String {
     return slicedName
 }
 
-fun readRuntimeVariableOrNull(key: String): String? =
-    try {
-        System.getProperty(key)
-    } catch (e: NullPointerException) {
-        System.getenv(key)
-    }
+fun readRuntimeVariableOrNull(key: String): String? {
+        log.debug { "Reading runtime variable '$key'." }
+        return System.getProperty(key) ?: System.getenv(key)
+}
 
 fun readRuntimeVariable(key: String, default: String): String =
     readRuntimeVariableOrNull(key) ?: default
 
 fun readRuntimeVariableOrThrow(key: String): String =
-    readRuntimeVariableOrNull(key) ?: throw IllegalStateException("Require mandatory System/Environment variable '$key'!")
+    readRuntimeVariableOrNull(key) ?: throw IllegalStateException("Mandatory system/environment variable '$key' was not set!")

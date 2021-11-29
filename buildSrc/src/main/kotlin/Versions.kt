@@ -21,6 +21,7 @@ object Versions {
     object Plugins {
         val Kotlin = "1.5.31"
         val Kotest = "0.3.8"
+        val Jib = "3.1.4"
         val Versions = "0.39.0"
     }
 }

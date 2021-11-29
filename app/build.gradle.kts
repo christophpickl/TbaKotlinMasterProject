@@ -15,5 +15,6 @@ dependencies {
     runtimeOnly(Dependencies.Postgres)
 
     testImplementation(project(":domain:domain-model", "test"))
+    testImplementation(project(":boundary:boundary-db", "test"))
     testImplementation(project(":commons:commons-test"))
 }

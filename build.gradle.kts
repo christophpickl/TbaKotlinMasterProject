@@ -32,13 +32,18 @@ subprojects {
 		}
 	}
 	
-	tasks.withType<KotlinCompile> {
+	tasks.withType<KotlinCompile>().configureEach {
 		kotlinOptions {
-			freeCompilerArgs = listOf("-Xjsr305=strict")
+			freeCompilerArgs = listOf(
+                "-Xjsr305=strict",
+//                "-opt-in=kotlinx.coroutines.DelicateCoroutinesApi"
+                "-Xuse-experimental=kotlinx.coroutines.DelicateCoroutinesApi",
+                "-Xuse-experimental=kotlin.time.ExperimentalTime"
+            )
 			jvmTarget = "11"
 		}
 	}
-	
+
 	tasks.withType<Test> {
 		useJUnitPlatform()
 	}

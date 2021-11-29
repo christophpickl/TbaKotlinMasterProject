@@ -78,7 +78,14 @@ class LocalInfraManager(
     private fun startPostgres(): PostgreSQLContainer<Nothing> {
         val postgres = PostgreSQLContainer<Nothing>("postgres:9.6.12")
         log.info { "Starting PostgreSQL in testcontainer." }
-        postgres.start()
+        try {
+            postgres.start()
+        } catch(e: IllegalStateException) {
+            if(e.message?.contains("Could not find a valid Docker environment") == true) {
+                throw IllegalStateException("Please start Docker runtime.", e)
+            }
+            throw e
+        }
         return postgres
     }
 

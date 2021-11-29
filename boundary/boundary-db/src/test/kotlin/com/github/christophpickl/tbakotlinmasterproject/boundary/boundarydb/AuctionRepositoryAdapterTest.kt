@@ -20,7 +20,7 @@ import io.mockk.mockk
 import io.mockk.verify
 import org.jetbrains.exposed.sql.Database
 
-class AuctionRepositoryAdapterTest : DescribeSpec() {
+internal class AuctionRepositoryAdapterTest : DescribeSpec() {
 
     private val fault = Fault.any()
     private val auction = Auction.any()

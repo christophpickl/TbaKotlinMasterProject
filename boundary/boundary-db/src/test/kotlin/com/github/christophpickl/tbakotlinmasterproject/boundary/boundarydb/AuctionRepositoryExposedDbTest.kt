@@ -16,7 +16,7 @@ import org.jetbrains.exposed.sql.transactions.TransactionManager
 import java.sql.ResultSet
 import java.util.UUID
 
-class AuctionRepositoryExposedDbTest : DescribeSpec() {
+internal class AuctionRepositoryExposedDbTest : DescribeSpec() {
 
     private val tableName = "auctions"
     private val dbo = AuctionDbo.any()
@@ -79,6 +79,7 @@ class AuctionRepositoryExposedDbTest : DescribeSpec() {
                 insert(dbo)
 
                 val result = repo.selectAll(db)
+                println("result: $result")
 
                 result.shouldBeRight().shouldContainExactly(dbo)
             }
@@ -86,6 +87,7 @@ class AuctionRepositoryExposedDbTest : DescribeSpec() {
     }
 
     private fun insert(dbo: AuctionDbo) {
+        println("insert: $dbo")
         db.execute("INSERT INTO $tableName (id, title) VALUES ('${dbo.id}', '${dbo.title}')")
     }
 
