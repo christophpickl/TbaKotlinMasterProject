@@ -5,6 +5,7 @@ import com.github.christophpickl.tbakotlinmasterproject.commons.commonslang.Modu
 import org.koin.dsl.bind
 import org.koin.dsl.module
 
+@Suppress("unused")
 fun Modules.acceptanceApp() = module {
     single { HomeRoute() } bind Route::class
 }

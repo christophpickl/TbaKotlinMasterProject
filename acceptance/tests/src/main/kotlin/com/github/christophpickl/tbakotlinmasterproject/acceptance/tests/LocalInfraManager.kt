@@ -41,7 +41,11 @@ class LocalInfraManager(
     private val ktorPort: Int,
     private val acceptanceRoutesClient: AcceptanceRoutesClient
 ) {
-
+    companion object {
+        private const val START_INFRA_DELAY_IN_MS = 500L
+        private const val STOP_INFRA_GRACE_IN_MS = 2_000L
+        private const val STOP_INFRA_TIMEOUT_IN_MS = 5_000L
+    }
     private val log = logger {}
     private lateinit var ktor: NettyApplicationEngine
     private lateinit var ktorJob: Job
@@ -58,7 +62,7 @@ class LocalInfraManager(
                 password = postgres.password
             )
         ))
-        delay(500) // wait a bit
+        delay(START_INFRA_DELAY_IN_MS) // wait a bit
         acceptanceRoutesClient.requestCreateTables()
     }
 
@@ -68,7 +72,7 @@ class LocalInfraManager(
 
     suspend fun stopInfra() {
         log.info { "Stopping Ktor server." }
-        ktor.stop(2_000L, 5_000L)
+        ktor.stop(STOP_INFRA_GRACE_IN_MS, STOP_INFRA_TIMEOUT_IN_MS)
         ktorJob.join()
 
         log.info { "Stopping PostgreSQL testcontainer." }

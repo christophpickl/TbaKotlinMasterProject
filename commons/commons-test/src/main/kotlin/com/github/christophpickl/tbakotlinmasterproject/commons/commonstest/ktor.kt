@@ -19,7 +19,8 @@ fun TestApplicationResponse.statusShouldBeOk() {
     status() shouldBe HttpStatusCode.OK
 }
 
-fun DescribeSpecRootContext.route(path: String, test: suspend DescribeSpecContainerContext.() -> Unit) = describe(path, test)
+fun DescribeSpecRootContext.route(path: String, test: suspend DescribeSpecContainerContext.() -> Unit) =
+    describe(path, test)
 
 val jackson = jacksonObjectMapper()
 

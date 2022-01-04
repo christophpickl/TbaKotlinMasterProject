@@ -46,6 +46,7 @@ class GherkinInstance : GherkinInterpreter {
     }
 
     override fun requestHttp() {
+        println("request HTTP")
     }
 
     override fun assertIsBar() {
@@ -57,14 +58,17 @@ class GherkinInstance : GherkinInterpreter {
 interface GherkinInterpreter : GivenBdd, WhenInitBdd, ThenInitBdd, GivenActions, WhenActions, ThenActions
 
 interface GivenBdd {
+    @Suppress("FunctionNaming", "FunctionName")
     fun Given(code: GivenActions.() -> Unit): WhenInitBdd
 }
 
 interface WhenInitBdd {
+    @Suppress("FunctionNaming", "FunctionName")
     infix fun When(code: WhenActions.() -> Unit): ThenInitBdd
 }
 
 interface ThenInitBdd {
+    @Suppress("FunctionNaming", "FunctionName")
     infix fun Then(code: ThenActions.() -> Unit)
 }
 

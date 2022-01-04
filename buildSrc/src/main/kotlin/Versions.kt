@@ -19,6 +19,7 @@ object Versions {
     val TestcontainersPostgres = "1.16.2"
 
     object Plugins {
+        val Detekt = "1.19.0"
         val Kotlin = "1.5.31"
         val Kotest = "0.3.8"
         val Jib = "3.1.4"

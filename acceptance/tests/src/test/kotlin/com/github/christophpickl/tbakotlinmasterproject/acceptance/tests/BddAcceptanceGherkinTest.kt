@@ -2,9 +2,11 @@ package com.github.christophpickl.tbakotlinmasterproject.acceptance.tests
 
 import io.kotest.core.spec.style.DescribeSpec
 
-class BddAcceptanceGherkinTest() : DescribeSpec() {
+class BddAcceptanceGherkinTest : DescribeSpec() {
 
+    @Suppress("PrivatePropertyName")
     private val Given = GherkinStateManager()
+    
     override fun listeners() = listOf(Given)
 
     init {

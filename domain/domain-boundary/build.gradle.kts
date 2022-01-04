@@ -1,4 +1,4 @@
 dependencies {
-    api(project(":domain:domain-model"))
-    api(Dependencies.Arrow.Core)
+    implementation(project(":domain:domain-model"))
+    implementation(Dependencies.Arrow.Core)
 }

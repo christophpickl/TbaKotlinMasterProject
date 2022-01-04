@@ -16,7 +16,7 @@ class AuctionsRouteAcceptanceTest : DescribeSpec() {
     init {
         describe("When GET /auctions") {
             it("Then return OK and empty JSON") {
-                val response = client.GET("/auctions")
+                val response = client.get("/auctions")
 
                 response.status shouldBe HttpStatusCode.OK
                 val json = response.receive<String>()

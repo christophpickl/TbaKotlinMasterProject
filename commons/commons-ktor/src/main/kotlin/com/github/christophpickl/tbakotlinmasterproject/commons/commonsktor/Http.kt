@@ -8,7 +8,7 @@ import io.ktor.http.HttpMethod
 import mu.KotlinLogging.logger
 
 interface HttpRequester {
-    suspend fun GET(path: String): HttpResponse
+    suspend fun get(path: String): HttpResponse
     suspend fun request(method: Method, path: String): HttpResponse
 }
 
@@ -19,7 +19,7 @@ class KtorHttpRequester(
 
     private val log = logger {}
 
-    override suspend fun GET(path: String): HttpResponse = request(Method.GET, path)
+    override suspend fun get(path: String): HttpResponse = request(Method.GET, path)
 
     override suspend fun request(method: Method, path: String): HttpResponse =
         HttpClient(CIO) {

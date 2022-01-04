@@ -23,7 +23,7 @@ internal class AuctionRepositoryExposed {
         db.transactionSafe("Insert failed for: $dbo") {
             AuctionTable.insert { row ->
                 row[AuctionTable.id] = EntityID(dbo.id, AuctionTable)
-                row[AuctionTable.title] = dbo.title
+                row[title] = dbo.title
             }
         }
 }

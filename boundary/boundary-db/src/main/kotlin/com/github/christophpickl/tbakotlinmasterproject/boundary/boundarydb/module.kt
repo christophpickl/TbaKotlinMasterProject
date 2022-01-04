@@ -5,6 +5,7 @@ import com.github.christophpickl.tbakotlinmasterproject.domain.domainboundary.Au
 import org.koin.dsl.bind
 import org.koin.dsl.module
 
+@Suppress("unused")
 fun Modules.boundaryDb(config: DatabaseConfig) = module {
     single {
         config.connectDatabase()

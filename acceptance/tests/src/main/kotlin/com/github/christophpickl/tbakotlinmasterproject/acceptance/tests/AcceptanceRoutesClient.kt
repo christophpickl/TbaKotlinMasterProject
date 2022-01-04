@@ -10,11 +10,11 @@ class AcceptanceRoutesClient(
     private val client = KtorHttpRequester(baseUrl)
 
     suspend fun requestCreateTables() {
-        client.GET("/acceptanceTest/createTables").status shouldBe HttpStatusCode.OK
+        client.get("/acceptanceTest/createTables").status shouldBe HttpStatusCode.OK
     }
 
     suspend fun requestDeleteAll() {
-        client.GET("/acceptanceTest/deleteAll").status shouldBe HttpStatusCode.OK
+        client.get("/acceptanceTest/deleteAll").status shouldBe HttpStatusCode.OK
     }
 
 //    private infix fun HttpStatusCode.shouldBe(expected: HttpStatusCode) {

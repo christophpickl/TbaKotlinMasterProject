@@ -8,8 +8,6 @@ import io.kotest.matchers.shouldBe
 
 class HomeRouteTest : DescribeSpec() {
     
-    private val title = "test title"
-    
     init {
         route("/") {
             test("Ok and returns greeting") {

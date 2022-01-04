@@ -1,0 +1,10 @@
+build:
+  maxIssues: 0
+
+formatting:
+  MaximumLineLength:
+    maxLineLength: 180
+
+naming:
+  MatchingDeclarationName:
+    active: false
